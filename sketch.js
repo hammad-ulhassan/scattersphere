@@ -45,7 +45,6 @@ function bumpySphere(thetaM, phiM) {
       let x = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * cos(phi);
       let y = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * sin(theta);
       let z = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * cos(theta);
-      // stroke(111+x, 191+y, 183+z);
       vertex(x, y, z);
     }
     endShape();
