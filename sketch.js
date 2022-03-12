@@ -1,13 +1,12 @@
-var r = 350;
-
-
+var r = 250;
+var step = 5;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   angleMode(DEGREES);
   colorMode(RGB);
 
-  strokeWeight(2);
+  strokeWeight(2.5);
   noFill();
 }
 
@@ -17,7 +16,6 @@ function draw() {
 
   rotateY(90); 
   rotateZ(65);
-  stroke(255)
 
   let thetaM = map(mouseX, 0, width, 1, 10)
   let phiM = map(mouseY, 0, height, 1, 10)
@@ -25,9 +23,9 @@ function draw() {
 }
 
 function normalSphere() {
-  for (let phi = 0; phi < 180; phi += 5) {
+  for (let phi = 0; phi < 180; phi += step) {
     beginShape();
-    for (let theta = 0; theta < 360; theta += 5) {
+    for (let theta = 0; theta < 360; theta += step) {
       let x = r * cos(phi);
       let y = r * sin(phi) * sin(theta);
       let z = r * sin(phi) * cos(theta);
@@ -39,12 +37,14 @@ function normalSphere() {
 }
 
 function bumpySphere(thetaM, phiM) {
-  for (let phi = 0; phi < 180; phi += 2) {
+  for (let phi = 0; phi < 180; phi += step) {
     beginShape(POINTS);
-    for (let theta = 0; theta < 360; theta += 2) {
+    for (let theta = 0; theta < 360; theta += step) {
       let x = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * cos(phi);
       let y = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * sin(theta);
       let z = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * cos(theta);
+      stroke(x+255, y+171, z)
+      // stroke(0,0,255)
       vertex(x, y, z);
     }
     endShape();
