@@ -6,7 +6,6 @@ function setup() {
   angleMode(DEGREES);
   colorMode(RGB);
 
-  strokeWeight(2.5);
   noFill();
 }
 
@@ -15,7 +14,8 @@ function draw() {
   orbitControl(4, 4);
 
   rotateY(90); 
-  rotateZ(65);
+  // rotateZ(65);
+  rotateX(30)
 
   let thetaM = map(mouseX, 0, width, 1, 10)
   let phiM = map(mouseY, 0, height, 1, 10)
@@ -36,17 +36,23 @@ function normalSphere() {
   }
 }
 
+let factor = 0;
+let x = y = z = 0;
+
 function bumpySphere(thetaM, phiM) {
-  for (let phi = 0; phi < 180; phi += step) {
+  strokeWeight(2);
+  for (let phi = 0; phi < 180; phi += 5) {
     beginShape(POINTS);
-    for (let theta = 0; theta < 360; theta += step) {
-      let x = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * cos(phi);
-      let y = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * sin(theta);
-      let z = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM)) * sin(phi) * cos(theta);
+    for (let theta = 0; theta < 360; theta += 5) {
+      factor = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM));
+      x = factor * cos(phi);
+      y = factor * sin(phi) * sin(theta);
+      z = factor * sin(phi) * cos(theta);
       stroke(x+255, y+171, z)
       // stroke(0,0,255)
       vertex(x, y, z);
     }
-    endShape();
+    endShape(CLOSE);
   }
 }
+
