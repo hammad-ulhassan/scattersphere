@@ -13,9 +13,9 @@ function draw() {
   background(10, 0, 50);
   orbitControl(4, 4);
 
-  rotateY(90); 
-  // rotateZ(65);
-  rotateX(30)
+  rotateY(135); 
+  rotateZ(35);
+  // rotateX(30)
 
   let thetaM = map(mouseX, 0, width, 1, 10)
   let phiM = map(mouseY, 0, height, 1, 10)
