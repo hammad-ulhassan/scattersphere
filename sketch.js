@@ -1,5 +1,5 @@
 var r = 250;
-var step = 5;
+var step = 3;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -41,9 +41,9 @@ let x = y = z = 0;
 
 function bumpySphere(thetaM, phiM) {
   strokeWeight(2);
-  for (let phi = 0; phi < 180; phi += 5) {
+  for (let phi = 0; phi < 180; phi += step) {
     beginShape(POINTS);
-    for (let theta = 0; theta < 360; theta += 5) {
+    for (let theta = 0; theta < 360; theta += step) {
       factor = r * (1+0.2*sin(theta*thetaM)*sin(phi*phiM));
       x = factor * cos(phi);
       y = factor * sin(phi) * sin(theta);
